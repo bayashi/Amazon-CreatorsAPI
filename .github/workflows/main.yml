@@ -1,0 +1,43 @@
+name: main
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - '*'
+    paths-ignore:
+      - '**/*.md'
+      - '**/.gitignore'
+  pull_request:
+    branches:
+      - '!bump-version'
+      - '!bump_version'
+      - '!doc?'
+      - '!pod'
+    paths-ignore:
+      - '**/*.md'
+      - '**/.gitignore'
+
+jobs:
+  linux_ubuntu_perl:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        perl-version:
+          - '5.12'
+          - '5.28'
+          - '5.38'
+
+    container:
+      image: perl:${{ matrix.perl-version }}
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: perl -V
+        run: perl -V
+      - name: Install dependencies
+        run: curl -sL https://git.io/cpm | perl - install -g --with-recommends --with-test --with-configure --show-build-log-on-failure
+      - name: Run test
+        run: prove -l t
