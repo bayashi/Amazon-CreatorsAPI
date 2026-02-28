@@ -26,8 +26,6 @@ jobs:
     strategy:
       matrix:
         perl-version:
-          - '5.12'
-          - '5.28'
           - '5.38'
 
     container:
