@@ -6,6 +6,13 @@ use Amazon::CreatorsAPI;
 
 can_ok 'Amazon::CreatorsAPI', qw/new/;
 
-# write more tests
+{
+    my $api = Amazon::CreatorsAPI->new(
+        'test_id',
+        'test_secret',
+        '3.3',
+    );
+    isa_ok $api, 'Amazon::CreatorsAPI';
+}
 
 done_testing;

@@ -4,6 +4,10 @@ requires 'perl', '5.008005';
 requires 'strict';
 requires 'warnings';
 requires 'Carp';
+requires 'Class::Accessor::Lite';
+requires 'JSON';
+requires 'HTTP::Tiny';
+requires 'WWW::Form::UrlEncoded';
 
 on 'test' => sub {
     requires 'Test::More', '0.88';
