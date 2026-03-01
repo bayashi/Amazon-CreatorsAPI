@@ -68,9 +68,9 @@ sub _refresh_token {
             'POST',
             $self->auth_endpoint,
             {
-                'headers' => [
+                'headers' => {
                     'Content-Type' => 'application/json',
-                ],
+                },
                 'content' => $JSON->encode({
                     'grant_type' => $self->grant_type,
                     'client_id'  => $self->credential_id,
@@ -85,9 +85,9 @@ sub _refresh_token {
             'POST',
             $self->auth_endpoint,
             {
-                'headers' => [
+                'headers' => {
                     'Content-Type' => 'application/x-www-form-urlencoded',
-                ],
+                },
                 'content' => build_urlencoded(
                     'grant_type' => $self->grant_type,
                     'client_id'  => $self->credential_id,

@@ -15,7 +15,7 @@ my $api = Amazon::CreatorsAPI->new(
     },
 );
 
-my $res = $api->get_items({
+my $res = $api->search_items({
     keywords => "{search_keyword}",
     resources => [
         'itemInfo.title',

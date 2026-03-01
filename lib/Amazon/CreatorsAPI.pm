@@ -75,11 +75,11 @@ sub operation {
         'POST',
         $self->operation_endpoint . '/' . $operation,
         {
-            'headers' => [
+            'headers' => {
                 'Authorization' => $self->_auth_header,
                 'Content-Type' => 'application/json',
                 'x-marketplace' => $self->marketplace,
-            ],
+            },
             'content' => $JSON->encode({
                 partnerTag => $self->partner_tag,
                 marketplace => $self->marketplace,
