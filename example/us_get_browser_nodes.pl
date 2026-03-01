@@ -5,8 +5,8 @@ use warnings;
 use Amazon::CreatorsAPI;
 use Data::Dumper;
 
-# Locale Reference of Japan
-# https://affiliate-program.amazon.com/creatorsapi/docs/en-us/locale-reference/japan
+# Locale reference of US
+# https://affiliate-program.amazon.com/creatorsapi/docs/en-us/locale-reference/united-states
 
 my $api = Amazon::CreatorsAPI->new(
     "{credential_id}",
@@ -14,15 +14,11 @@ my $api = Amazon::CreatorsAPI->new(
     "{credential_version}",
     {
         partner_tag => "{partner_tag}",
-        marketplace => 'www.amazon.co.jp',
     },
 );
 
-my $res = $api->search_items({
-    keywords => "{search_keyword}",
-    resources => [
-        'itemInfo.title',
-    ],
+my $res = $api->get_browse_nodes({
+    browseNodeIds => ['6134005011'],
 });
 
 print Dumper($res);
