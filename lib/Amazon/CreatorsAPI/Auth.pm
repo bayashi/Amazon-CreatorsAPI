@@ -35,7 +35,7 @@ sub new {
         credential_secret  => $credential_secret,
         credential_version => $credential_version,
         is_lwa             => !!($credential_version =~ m!^3\.!),
-        auth_endpoint      => $opt->{auth_endpoint} || $class->_auth_endpoint($credential_version),
+        auth_endpoint      => $opt->{auth_endpoint} || _auth_endpoint($credential_version),
         ua                 => $opt->{ua} || HTTP::Tiny->new,
         grant_type         => $opt->{grant_type} || 'client_credentials',
         access_token       => '',
@@ -130,7 +130,6 @@ my $AUTH_ENDPOINT_MAP = {
 };
 
 sub _auth_endpoint {
-    my $class   = shift;
     my $version = shift;
 
     if (!$version || !exists $AUTH_ENDPOINT_MAP->{$version}) {
